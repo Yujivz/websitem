@@ -1,0 +1,2383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>(๑ᵔ⤙ᵔ๑ 🥢) Web Tasarım & Geliştirme</title>
+   
+    <!-- Tarayıcı Sekme Logosu (Favicon) -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ═══════════════════════════════════════
+           TEMA DEĞİŞKENLERİ
+        ═══════════════════════════════════════ */
+
+        /* Varsayılan: Altın Kırmızı (Orijinal) */
+        :root {
+            --primary: #d4af37;
+            --primary-hover: #f3c63f;
+            --accent: #8b0000;
+            --bg-dark: rgba(10, 8, 6, 0.55);
+            --card-bg: rgba(18, 14, 11, 0.7);
+            --card-border: rgba(212, 175, 55, 0.3);
+            --text-main: #f5f2eb;
+            --text-muted: #b8b2a6;
+            --body-bg: #0c0a09;
+            --header-bg: rgba(10, 8, 6, 0.45);
+            --overlay-bg: radial-gradient(circle at center, rgba(12,10,9,0.45) 0%, rgba(10,8,6,0.75) 100%);
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --wa-gradient: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+            --phone-gradient: linear-gradient(90deg, #d4af37 0%, #f3c63f 100%);
+            --btn-primary-bg: linear-gradient(135deg, #d4af37 0%, #a38220 100%);
+            --btn-primary-color: #0c0a09;
+            --scroll-btn-hover: #d4af37;
+            --tag-bg: rgba(212,175,55,0.1);
+            --intro-emblem-bg: rgba(139,0,0,0.6);
+            --intro-emblem-border: #d4af37;
+        }
+
+        /* Tema: Sakura (Pembe Japon Kiraz Çiçeği) */
+        [data-theme="sakura"] {
+            --primary: #e8a0b4;
+            --primary-hover: #f5c6d8;
+            --accent: #c06080;
+            --bg-dark: rgba(15, 5, 10, 0.6);
+            --card-bg: rgba(20, 8, 15, 0.72);
+            --card-border: rgba(232, 160, 180, 0.3);
+            --text-main: #fdf0f5;
+            --text-muted: #c8a8b5;
+            --body-bg: #0d0508;
+            --header-bg: rgba(15, 5, 10, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(180,60,100,0.12) 0%, rgba(10,4,8,0.82) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #e8a0b4 0%, #b06080 100%);
+            --btn-primary-color: #0d0508;
+            --scroll-btn-hover: #e8a0b4;
+            --tag-bg: rgba(232,160,180,0.12);
+            --intro-emblem-bg: rgba(192,96,128,0.6);
+            --intro-emblem-border: #e8a0b4;
+        }
+
+        /* Tema: Zarif (Beyaz Gümüş Minimalist) */
+        [data-theme="elegant"] {
+            --primary: #c8c8d8;
+            --primary-hover: #e8e8f5;
+            --accent: #505070;
+            --bg-dark: rgba(8, 8, 14, 0.6);
+            --card-bg: rgba(12, 12, 20, 0.75);
+            --card-border: rgba(200, 200, 216, 0.22);
+            --text-main: #efefff;
+            --text-muted: #9898b5;
+            --body-bg: #08080e;
+            --header-bg: rgba(8, 8, 14, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(80,80,120,0.1) 0%, rgba(5,5,12,0.88) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #c8c8d8 0%, #707090 100%);
+            --btn-primary-color: #08080e;
+            --scroll-btn-hover: #c8c8d8;
+            --tag-bg: rgba(200,200,216,0.1);
+            --intro-emblem-bg: rgba(80,80,112,0.5);
+            --intro-emblem-border: #c8c8d8;
+        }
+
+        /* Tema: Zümrüt (Derin Yeşil) */
+        [data-theme="emerald"] {
+            --primary: #50c878;
+            --primary-hover: #7fd99a;
+            --accent: #006040;
+            --bg-dark: rgba(4, 12, 8, 0.6);
+            --card-bg: rgba(6, 16, 10, 0.75);
+            --card-border: rgba(80, 200, 120, 0.28);
+            --text-main: #e8fff2;
+            --text-muted: #88b89a;
+            --body-bg: #030a06;
+            --header-bg: rgba(4, 12, 8, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(0,80,40,0.18) 0%, rgba(3,10,6,0.85) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #50c878 0%, #208048 100%);
+            --btn-primary-color: #030a06;
+            --scroll-btn-hover: #50c878;
+            --tag-bg: rgba(80,200,120,0.1);
+            --intro-emblem-bg: rgba(0,96,64,0.6);
+            --intro-emblem-border: #50c878;
+        }
+
+        /* Tema: Ay Işığı (Derin Mor Gece) */
+        [data-theme="moonlight"] {
+            --primary: #a78bfa;
+            --primary-hover: #c4b0fc;
+            --accent: #5b21b6;
+            --bg-dark: rgba(8, 5, 16, 0.6);
+            --card-bg: rgba(12, 8, 22, 0.75);
+            --card-border: rgba(167, 139, 250, 0.28);
+            --text-main: #f0eeff;
+            --text-muted: #9d8fc8;
+            --body-bg: #060410;
+            --header-bg: rgba(8, 5, 16, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(90,33,182,0.18) 0%, rgba(6,4,16,0.88) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #a78bfa 0%, #6030c0 100%);
+            --btn-primary-color: #060410;
+            --scroll-btn-hover: #a78bfa;
+            --tag-bg: rgba(167,139,250,0.12);
+            --intro-emblem-bg: rgba(91,33,182,0.6);
+            --intro-emblem-border: #a78bfa;
+        }
+
+        /* Tema: Kor Ateş (Turuncu Yanardağ) */
+        [data-theme="ember"] {
+            --primary: #ff7c38;
+            --primary-hover: #ffaa70;
+            --accent: #c43010;
+            --bg-dark: rgba(12, 5, 2, 0.6);
+            --card-bg: rgba(18, 7, 3, 0.75);
+            --card-border: rgba(255, 124, 56, 0.28);
+            --text-main: #fff4ee;
+            --text-muted: #c09080;
+            --body-bg: #0a0402;
+            --header-bg: rgba(12, 5, 2, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(196,48,16,0.2) 0%, rgba(10,4,2,0.88) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #ff7c38 0%, #c03010 100%);
+            --btn-primary-color: #0a0402;
+            --scroll-btn-hover: #ff7c38;
+            --tag-bg: rgba(255,124,56,0.12);
+            --intro-emblem-bg: rgba(196,48,16,0.6);
+            --intro-emblem-border: #ff7c38;
+        }
+
+        /* Tema: Okyanus (Derin Deniz Mavisi) */
+        [data-theme="ocean"] {
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --accent: #0369a1;
+            --bg-dark: rgba(2, 8, 18, 0.6);
+            --card-bg: rgba(4, 10, 24, 0.75);
+            --card-border: rgba(56, 189, 248, 0.28);
+            --text-main: #e0f4ff;
+            --text-muted: #7aabbf;
+            --body-bg: #020610;
+            --header-bg: rgba(2, 8, 18, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(3,105,161,0.2) 0%, rgba(2,6,16,0.88) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #38bdf8 0%, #0369a1 100%);
+            --btn-primary-color: #020610;
+            --scroll-btn-hover: #38bdf8;
+            --tag-bg: rgba(56,189,248,0.12);
+            --intro-emblem-bg: rgba(3,105,161,0.6);
+            --intro-emblem-border: #38bdf8;
+        }
+
+        /* Tema: Kül (Soğuk Gri Çelik) */
+        [data-theme="ash"] {
+            --primary: #94a3b8;
+            --primary-hover: #cbd5e1;
+            --accent: #334155;
+            --bg-dark: rgba(6, 8, 10, 0.6);
+            --card-bg: rgba(10, 12, 16, 0.78);
+            --card-border: rgba(148, 163, 184, 0.22);
+            --text-main: #e2e8f0;
+            --text-muted: #8899aa;
+            --body-bg: #050708;
+            --header-bg: rgba(6, 8, 10, 0.5);
+            --overlay-bg: radial-gradient(circle at center, rgba(51,65,85,0.2) 0%, rgba(5,7,8,0.9) 100%);
+            --btn-primary-bg: linear-gradient(135deg, #94a3b8 0%, #475569 100%);
+            --btn-primary-color: #050708;
+            --scroll-btn-hover: #94a3b8;
+            --tag-bg: rgba(148,163,184,0.1);
+            --intro-emblem-bg: rgba(51,65,85,0.6);
+            --intro-emblem-border: #94a3b8;
+        }
+
+        /* ═══════════════════════════════════════
+           GENEL STILLER
+        ═══════════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        body {
+            background: var(--body-bg) url('arkaplan.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay-bg);
+            z-index: -1;
+            transition: background 0.5s ease;
+        }
+
+        /* ═══════════════════════════════════════
+           INTRO OVERLAY
+        ═══════════════════════════════════════ */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10, 8, 6, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+            padding: 0 20px;
+        }
+
+        #intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-brand-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-emblem {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3.5px solid var(--intro-emblem-border);
+            background: var(--intro-emblem-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 45px rgba(212, 175, 55, 0.75), 0 0 25px rgba(139, 0, 0, 0.9);
+            animation: introLogoDirectSpot 2.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            z-index: 3;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .intro-emblem span {
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            color: #fff;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transition: color 0.3s;
+        }
+
+        .intro-divider-line {
+            width: 3px;
+            height: 120px;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0) 0%, var(--primary) 30%, var(--accent) 70%, rgba(139, 0, 0, 0) 100%);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 8px rgba(139, 0, 0, 0.8);
+            border-radius: 3px;
+            margin: 0 20px 0 22px;
+            z-index: 2;
+            flex-shrink: 0;
+            opacity: 0;
+            transform-origin: bottom center;
+            animation: introLineGrow 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1.45s forwards;
+        }
+
+        .intro-text-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-40px);
+            animation: introTextSmooth 1.0s cubic-bezier(0.22, 1, 0.36, 1) 1.9s forwards;
+        }
+
+        .intro-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(245, 242, 235, 0.3);
+        }
+
+        .intro-sub {
+            font-size: 1rem;
+            letter-spacing: 7px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .intro-tag {
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--card-border);
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            width: fit-content;
+            font-weight: 600;
+        }
+
+        .intro-motto {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        @keyframes introLogoDirectSpot {
+            0% { transform: scale(0.2) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1.15) rotate(360deg); opacity: 1; }
+            70% { transform: scale(1) rotate(360deg); }
+            100% { transform: scale(1) rotate(360deg); opacity: 1; }
+        }
+
+        @keyframes introLineGrow {
+            0% { opacity: 0; transform: scaleY(0); }
+            100% { opacity: 1; transform: scaleY(1); }
+        }
+
+        @keyframes introTextSmooth {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ═══════════════════════════════════════
+           HEADER
+        ═══════════════════════════════════════ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .logo-emblem {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: rgba(139, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .logo-emblem span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .logo-text-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: var(--text-main);
+            transition: transform 0.3s ease, color 0.3s ease;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover .logo-emblem {
+            transform: rotate(360deg) scale(1.08);
+            border-color: #fff;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
+        }
+
+        .logo:hover .logo-title { transform: translateX(4px); color: var(--primary); }
+        .logo:hover .logo-sub { opacity: 1; color: #fff; }
+
+        /* Nav Right Wrapper */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Desktop Nav */
+        nav.desktop-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+        }
+
+        nav.desktop-nav ul li a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 7px 12px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav.desktop-nav ul li a:hover,
+        nav.desktop-nav ul li a.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--card-border);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Header Social Icons */
+        .header-socials {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 1px solid var(--card-border);
+            padding-left: 16px;
+        }
+
+        .header-social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--card-border);
+            background: rgba(18, 14, 11, 0.8);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-social-icon.wa:hover {
+            color: #25d366;
+            border-color: #25d366;
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .header-social-icon.insta:hover {
+            color: #e6683c;
+            border-color: #e6683c;
+            box-shadow: 0 0 12px rgba(230, 104, 60, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Hamburger Toggle */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.3rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            background: rgba(18, 14, 11, 0.85);
+            border: 1px solid var(--card-border);
+            flex-shrink: 0;
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(300px, 85vw);
+            height: 100vh;
+            height: 100dvh;
+            background: rgba(10, 8, 6, 0.98);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-left: 1px solid var(--card-border);
+            z-index: 999;
+            padding: 80px 24px 40px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.open { right: 0; }
+
+        .mobile-drawer a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-drawer a:hover,
+        .mobile-drawer a.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--card-border);
+        }
+
+        .mobile-socials {
+            display: flex;
+            gap: 14px;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ═══════════════════════════════════════
+           MAIN & PAGES
+        ═══════════════════════════════════════ */
+        main {
+            flex: 1;
+            margin-top: 70px;
+            padding: 32px 5% 40px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 130px);
+        }
+
+        .page-view {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            animation: fadeIn 0.45s ease forwards;
+        }
+
+        .page-view.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 14px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .page-badge {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            padding: 5px 12px;
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            background: rgba(212, 175, 55, 0.08);
+            white-space: nowrap;
+        }
+
+        /* Hero Layout Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+            align-items: stretch;
+            margin-bottom: 50px;
+        }
+
+        .hero-text {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+
+        .hero-text h2 {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .hero-text h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3.5vw, 2.3rem);
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .hero-text h1 span { color: var(--primary); }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 24px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-color);
+            border: 1px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(139, 0, 0, 0.2);
+            color: var(--text-main);
+            border: 1px solid rgba(139, 0, 0, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(139, 0, 0, 0.4);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Right Column Grid Stack */
+        .hero-right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            justify-content: space-between;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 26px 22px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card:hover { border-color: var(--primary); }
+
+        .hero-card-icon {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .hero-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* Projects */
+        .projects-section {
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--primary);
+            margin-bottom: 22px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .projects-grid {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .project-card.detlab-card {
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            width: 100%;
+            max-width: 500px;
+            min-height: 230px;
+            margin: 0 auto;
+            background: #120e0b;
+        }
+
+        .project-card.detlab-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('detlabarkaplan.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: 1;
+        }
+
+        .project-card.detlab-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(18, 14, 11, 0.75) 0%, rgba(10, 8, 6, 0.92) 100%);
+            backdrop-filter: blur(2px);
+            z-index: 2;
+        }
+
+        .project-card.detlab-card .detlab-top-line {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            z-index: 4;
+        }
+
+        .project-card.detlab-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+        }
+
+        .project-card-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .project-icon {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+        }
+
+        .project-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--card-border);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: #0c0a09;
+            border-color: var(--primary);
+        }
+
+        /* Packages */
+        .packages-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 32px 26px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--btn-primary-bg);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .pricing-header {
+            text-align: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 10px;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .price-val {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price-unit {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .features-wrapper { margin-bottom: 22px; }
+
+        .features-title {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .features-list li i {
+            color: var(--primary);
+            font-size: 0.82rem;
+            background: rgba(212, 175, 55, 0.1);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--card-border);
+            margin-top: 1px;
+        }
+
+        .pricing-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 13px;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-color);
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .pricing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+            opacity: 0.92;
+        }
+
+        .empty-package-card {
+            background: var(--card-bg);
+            border: 1px dashed var(--card-border);
+            border-radius: 16px;
+            padding: 40px 25px;
+            width: 100%;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 350px;
+            transition: all 0.3s;
+        }
+
+        .empty-package-card i {
+            font-size: 2.6rem;
+            color: var(--primary);
+            opacity: 0.5;
+            margin-bottom: 14px;
+        }
+
+        .empty-package-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .empty-package-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            max-width: 260px;
+            line-height: 1.5;
+        }
+
+        /* Social Cards */
+        .insta-card, .wa-custom-card {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .insta-card { background-image: url('instagramkutucuk.jpg'); }
+        .wa-custom-card { background-image: url('whatsappkutucuk.jpg'); }
+
+        .insta-card::after, .wa-custom-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(18, 14, 11, 0.5) 0%, rgba(12, 10, 9, 0.88) 80%);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        .insta-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--insta-gradient);
+            z-index: 3;
+        }
+
+        .wa-custom-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--wa-gradient);
+            z-index: 3;
+        }
+
+        .card-inner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .insta-card:hover, .wa-custom-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            padding: 2px;
+            background: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .wa-custom-card .avatar-wrapper { background: var(--wa-gradient); }
+        .insta-card .avatar-wrapper { background: var(--insta-gradient); }
+
+        .avatar-box {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #120e0b;
+            background: #1e1512;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.4rem;
+            overflow: hidden;
+        }
+
+        .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .user-info { display: flex; flex-direction: column; }
+
+        .user-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .user-handle {
+            font-size: 0.88rem;
+            color: #25d366;
+            font-weight: 600;
+        }
+
+        .insta-handle { color: #e6683c; }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .insta-btn {
+            background: var(--insta-gradient);
+            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
+        }
+
+        .wa-btn {
+            background: var(--wa-gradient);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .action-btn:hover { opacity: 0.92; transform: scale(1.02); }
+
+        /* Card Box */
+        .card-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 36px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            margin-bottom: 22px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .card-box p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.97rem;
+            margin-bottom: 14px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 32px 22px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .service-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .service-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 32px 22px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-main);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card.phone-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--phone-gradient);
+            z-index: 3;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+        }
+
+        .contact-card i { font-size: 2.1rem; color: var(--primary); margin-bottom: 14px; }
+
+        .contact-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p { font-size: 1.05rem; font-weight: 600; }
+
+        /* Scroll to Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 42px;
+            height: 42px;
+            background: rgba(18, 14, 11, 0.85);
+            border: 1px solid var(--card-border);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 996;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-top-btn.show { opacity: 1; visibility: visible; }
+
+        .scroll-top-btn:hover {
+            background: var(--scroll-btn-hover);
+            color: #0c0a09;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            height: 56px;
+            background: rgba(10, 8, 6, 0.95);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════
+           TEMA SEÇİCİ
+        ═══════════════════════════════════════ */
+        .theme-picker-wrap {
+            position: fixed;
+            bottom: 28px;
+            left: 20px;
+            z-index: 997;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* Tema paneli */
+        .theme-panel {
+            background: rgba(12, 10, 9, 0.92);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transform-origin: bottom left;
+            transform: scale(0);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+        }
+
+        .theme-panel.open {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .theme-panel-title {
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            padding: 0 2px 4px 2px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 2px;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .theme-option:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--card-border);
+        }
+
+        .theme-option.active-theme {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--card-border);
+        }
+
+        .theme-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-swatch::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0;
+            width: 50%; height: 100%;
+        }
+
+        .theme-option-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .theme-active-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin-left: auto;
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .theme-option.active-theme .theme-active-dot { opacity: 1; }
+
+        /* Tema aç/kapat butonu */
+        .theme-toggle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(12, 10, 9, 0.88);
+            border: 1px solid var(--card-border);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 16px rgba(212, 175, 55, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE — TABLET (900px)
+        ═══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right-col {
+                flex-direction: row;
+            }
+
+            .packages-grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE — MOBILE (768px)
+        ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            header {
+                padding: 0 16px 0 16px;
+                height: 64px;
+            }
+
+            nav.desktop-nav { display: none; }
+            .header-socials { display: none; }
+
+            .mobile-toggle { display: flex; }
+
+            main {
+                margin-top: 64px;
+                padding: 20px 16px 30px 16px;
+                min-height: calc(100vh - 120px);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+
+            .hero-right-col {
+                flex-direction: row;
+                gap: 14px;
+            }
+
+            .hero-text {
+                padding: 26px 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-card {
+                padding: 20px 14px;
+            }
+
+            .hero-card h3 {
+                font-size: 0.95rem;
+            }
+
+            .hero-card p {
+                font-size: 0.82rem;
+            }
+
+            .hero-card-icon {
+                font-size: 1.8rem;
+            }
+
+            .card-box {
+                padding: 22px 18px;
+            }
+
+            .pricing-card {
+                padding: 26px 18px;
+            }
+
+            .price-val {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .packages-grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 20px;
+            }
+
+            .scroll-top-btn {
+                bottom: 18px;
+                right: 18px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .theme-picker-wrap {
+                bottom: 18px;
+                left: 14px;
+            }
+
+            .theme-toggle-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
+            }
+
+            .empty-package-card {
+                min-height: 200px;
+            }
+
+            footer {
+                height: auto;
+                padding: 14px 5%;
+                font-size: 0.78rem;
+            }
+
+            /* Mobilde Intro Ölçeklendirmesi */
+            .intro-emblem {
+                width: 72px;
+                height: 72px;
+            }
+
+            .intro-emblem span {
+                font-size: 2rem;
+            }
+
+            .intro-divider-line {
+                height: 85px;
+                margin: 0 12px 0 14px;
+            }
+
+            .intro-title {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            .intro-sub {
+                font-size: 0.65rem;
+                letter-spacing: 4px;
+            }
+
+            .intro-tag {
+                font-size: 0.52rem;
+                padding: 2px 6px;
+                letter-spacing: 1.5px;
+            }
+
+            .intro-motto {
+                font-size: 0.58rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE — KÜÇÜK MOBILE (480px)
+        ═══════════════════════════════════════ */
+        @media (max-width: 480px) {
+            .logo-title {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .logo-sub {
+                letter-spacing: 2px;
+            }
+
+            .hero-right-col {
+                flex-direction: column;
+            }
+
+            .intro-brand-wrapper {
+                transform: scale(0.85);
+                transform-origin: center;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+                gap: 8px;
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+            }
+
+            .theme-panel {
+                max-width: calc(100vw - 60px);
+            }
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE — ÇOK KÜÇÜK (360px)
+        ═══════════════════════════════════════ */
+        @media (max-width: 360px) {
+            header { padding: 0 12px; }
+            main { padding: 16px 12px 24px 12px; }
+
+            .logo-text-box { display: none; }
+
+            .logo-emblem {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SİNEMATİK INTRO OVERLAY -->
+    <div id="intro-overlay">
+        <div class="intro-brand-wrapper">
+            <div class="intro-emblem">
+                <span>隻</span>
+            </div>
+            <div class="intro-divider-line"></div>
+            <div class="intro-text-box">
+                <span class="intro-title">VELİ</span>
+                <span class="intro-sub">STUDIO</span>
+                <span class="intro-tag">WEB TASARIM &amp; GELİŞTİRME</span>
+                <span class="intro-motto">Dijital Varlığınızı Şekillendiriyoruz</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Header -->
+    <header>
+        <a href="#" class="logo" onclick="switchPage('home')">
+            <div class="logo-emblem">
+                <span>隻</span>
+            </div>
+            <div class="logo-text-box">
+                <span class="logo-title">VELİ</span>
+                <span class="logo-sub">STUDIO</span>
+            </div>
+        </a>
+
+        <div class="header-right">
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a id="nav-home" class="active" onclick="switchPage('home')">Ana Sayfa</a></li>
+                    <li><a id="nav-about" onclick="switchPage('about')">Hakkımda</a></li>
+                    <li><a id="nav-services" onclick="switchPage('services')">Hizmetler</a></li>
+                    <li><a id="nav-quote" onclick="switchPage('quote')">Paketler</a></li>
+                    <li><a id="nav-contact" onclick="switchPage('contact')">İletişim</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Social Icons -->
+            <div class="header-socials">
+                <a href="https://wa.me/905546682909" target="_blank" class="header-social-icon wa" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://instagram.com/veli.vz" target="_blank" class="header-social-icon insta" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Slide Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <a id="mob-home" class="active" onclick="switchPage('home')"><i class="fas fa-home"></i>Ana Sayfa</a>
+        <a id="mob-about" onclick="switchPage('about')"><i class="fas fa-user"></i>Hakkımda</a>
+        <a id="mob-services" onclick="switchPage('services')"><i class="fas fa-code"></i>Hizmetler</a>
+        <a id="mob-quote" onclick="switchPage('quote')"><i class="fas fa-tags"></i>Paketler</a>
+        <a id="mob-contact" onclick="switchPage('contact')"><i class="fas fa-envelope"></i>İletişim</a>
+        
+        <div class="mobile-socials">
+            <a href="https://wa.me/905546682909" target="_blank" class="header-social-icon wa">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/veli.vz" target="_blank" class="header-social-icon insta">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Main Dynamic Views -->
+    <main>
+        
+        <!-- HOME PAGE VIEW -->
+        <div id="page-home" class="page-view active">
+            <div class="hero-grid">
+                <!-- Left Column -->
+                <div class="hero-text">
+                    <h2>WEB STUDYO</h2>
+                    <h1>Prestijli &amp; Modern Web Çözümleri</h1>
+                    <p>Modern teknolojiler kullanarak kullanıcı dostu, performanslı ve estetik web projeleri inşa ediyorum. Dijital dünyadaki varlığınızı profesyonelce hayata geçirelim.</p>
+                    <div class="btn-group">
+                        <a class="btn btn-primary" onclick="switchPage('quote')">
+                            <i class="fas fa-tags"></i> Paketleri İncele
+                        </a>
+                        <a class="btn btn-outline" onclick="switchPage('contact')">
+                            <i class="fas fa-paper-plane"></i> İletişime Geç
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column Stack -->
+                <div class="hero-right-col">
+                    <div class="hero-card">
+                        <div class="hero-card-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <h3>HİZMET KALİTESİ</h3>
+                        <p>Sıfır hata, maksimum hız ve özgün tasarımlarla geliştirilmiş web projeleri.</p>
+                    </div>
+
+                    <div class="hero-card">
+                        <div class="hero-card-icon">
+                            <i class="fa-solid fa-spider"></i>
+                        </div>
+                        <h3>DİJİTAL VİZYON</h3>
+                        <p>Dijital dünyada iz bırakın, projelerinizi birlikte büyütelim.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yaptığım Web Siteleri Bölümü -->
+            <div class="projects-section">
+                <div class="section-title">
+                    <i class="fas fa-laptop-code"></i> Yaptığım Web Siteleri
+                </div>
+                <div class="projects-grid">
+                    <!-- Detlab Elektronik Kartı -->
+                    <div class="project-card detlab-card">
+                        <div class="detlab-top-line"></div>
+                        <div class="project-card-content">
+                            <div>
+                                <div class="project-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3>Detlab Elektronik</h3>
+                                <p>Elektronik ve baskı devre tasarımı alanında faaliyet gösteren girişim için geliştirilen resmi web platformu.</p>
+                            </div>
+                            <a href="https://detlabelektronik.netlify.app" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Siteye Git
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT PAGE VIEW -->
+        <div id="page-about" class="page-view">
+            <div class="page-header">
+                <div class="page-title">
+                    <i class="fas fa-user"></i> HAKKIMDA
+                </div>
+                <div class="page-badge">BİYOGRAFİ</div>
+            </div>
+
+            <div class="card-box">
+                <h3>Veli Salaraslan</h3>
+                <p>Web tasarımı ve yazılım geliştirme alanında uzmanlaşmış bir web geliştiriciyim. Projelerimde detaylara yüksek odaklanma, temiz kodlama ve sürekli gelişimi esas alıyorum.</p>
+                <p>Sadece görsel olarak şık değil; mobil uyumlu (responsive), SEO dostu ve hızlı açılan web siteleri inşa ediyorum. Amacım dijital ortamda rakiplerinizden sıyrılmanızı sağlamak.</p>
+
+                <div class="skill-tags">
+                    <span class="tag">Web Tasarım</span>
+                    <span class="tag">HTML5 &amp; CSS3</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Responsive Mobil Uyum</span>
+                    <span class="tag">SEO Optimizasyonu</span>
+                    <span class="tag">UI/UX Tasarım</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES PAGE VIEW -->
+        <div id="page-services" class="page-view">
+            <div class="page-header">
+                <div class="page-title">
+                    <i class="fas fa-code"></i> HİZMETLER
+                </div>
+                <div class="page-badge">ÇÖZÜMLER</div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h4>Web Tasarım &amp; Geliştirme</h4>
+                    <p>İhtiyaçlarınıza özel, modern standartlara uygun, hızlı ve yüksek kaliteli web siteleri tasarlıyorum.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h4>Mobil Uyumlu (Responsive)</h4>
+                    <p>Tüm mobil cihazlarda, tabletlerde ve masaüstü ekranlarda tam uyum sağlayan esnek tasarımlar hazırlıyorum.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gauge-high"></i>
+                    </div>
+                    <h4>Hız &amp; SEO Optimizasyonu</h4>
+                    <p>Arama motorlarında üst sıralara çıkmanız için yüksek performanslı ve hızlı açılan altyapılar oluşturuyorum.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAKETLER PAGE VIEW -->
+        <div id="page-quote" class="page-view">
+            <div class="page-header">
+                <div class="page-title">
+                    <i class="fas fa-box-open"></i> PAKETLER
+                </div>
+                <div class="page-badge">SABİT FİYAT</div>
+            </div>
+
+            <div class="packages-grid-container">
+                <!-- Sol Taraf: Standart Web Sitesi Kartı -->
+                <div class="pricing-card">
+                    <div>
+                        <div class="pricing-header">
+                            <span class="pricing-badge">Popüler Paket</span>
+                            <h3>Standart Web Sitesi</h3>
+                            <p class="subtitle">Markanızı dijital dünyada kurumsal, güvenilir ve prestijli gösteren tam donanımlı web çözümü.</p>
+                            <div class="price-box">
+                                <span class="price-val">4.500</span>
+                                <span class="price-unit">TL / Tek Seferlik</span>
+                            </div>
+                        </div>
+
+                        <div class="features-wrapper">
+                            <span class="features-title">Site İçeriği</span>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check"></i> <span><strong>Özel &amp; Kurumsal Tasarım:</strong> Markanızı üst seviyeye taşıyan modern arayüz</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>Mobil &amp; Tablet Uyumlu:</strong> Tüm ekranlarda kusursuz görünüm (Responsive)</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>Maksimum Hız &amp; Performans:</strong> Hızlı açılan, kasılmayan modern altyapı</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>Google &amp; SEO Altyapısı:</strong> Arama motorlarına tam uyumluluk</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>Sosyal Medya Entegrasyonu:</strong> WhatsApp, Instagram ve iletişim hatları</span></li>
+                                <li><i class="fas fa-check"></i> <span><strong>Harita &amp; İletişim Formu:</strong> Müşterilerinizin size kolayca ulaşabilmesi</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <a onclick="switchPage('contact')" class="pricing-btn">
+                        <i class="fas fa-paper-plane"></i> Teklif Al / İletişime Geç
+                    </a>
+                </div>
+
+                <!-- Sağ Taraf: Henüz Başka Paket Bulunmamaktadır Kartı -->
+                <div class="empty-package-card">
+                    <i class="fas fa-cubes"></i>
+                    <h4>Henüz Başka Paket Bulunmamaktadır</h4>
+                    <p>Özel projeniz veya ihtiyaçlarınız için doğrudan iletişim kanallarımız üzerinden bilgi alabilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE VIEW -->
+        <div id="page-contact" class="page-view">
+            <div class="page-header">
+                <div class="page-title">
+                    <i class="fas fa-envelope"></i> İLETİŞİM
+                </div>
+                <div class="page-badge">BANA ULAŞIN</div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Telefon Kartı -->
+                <a href="tel:05546682909" class="contact-card phone-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>TELEFON NUMARASI</h4>
+                    <p>0554 668 29 09</p>
+                </a>
+
+                <!-- WhatsApp Kartı -->
+                <div class="wa-custom-card">
+                    <div class="card-inner-content">
+                        <div class="profile-header">
+                            <div class="avatar-wrapper">
+                                <div class="avatar-box">
+                                    <img src="logowt.jpg" alt="WhatsApp Profil" onerror="this.onerror=null; this.src='https://i.imgur.com/8Q9Z5zN.jpg';">
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">Veli</span>
+                                <span class="user-handle">WhatsApp Hattı</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/905546682909" target="_blank" class="action-btn wa-btn">
+                            <i class="fab fa-whatsapp"></i> Mesaj Gönder
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Instagram Kartı -->
+                <div class="insta-card">
+                    <div class="card-inner-content">
+                        <div class="profile-header">
+                            <div class="avatar-wrapper">
+                                <div class="avatar-box">
+                                    <i class="fa-solid fa-spider"></i>
+                                </div>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">Veli</span>
+                                <span class="user-handle insta-handle">@veli.vz</span>
+                            </div>
+                        </div>
+                        <a href="https://instagram.com/veli.vz" target="_blank" class="action-btn insta-btn">
+                            <i class="fab fa-instagram"></i> Instagram'dan Ulaşın
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- TEMA SEÇİCİ -->
+    <div class="theme-picker-wrap" id="themePickerWrap">
+        <div class="theme-panel" id="themePanel">
+            <div class="theme-panel-title">Tema Seç</div>
+
+            <!-- 1: Altın Kırmızı (Varsayılan) -->
+            <div class="theme-option active-theme" data-theme="default" onclick="setTheme('default', this)">
+                <div class="theme-swatch" style="background:#8b0000;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#d4af37;"></div>
+                </div>
+                <span class="theme-option-label">Altın Kırmızı</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 2: Sakura -->
+            <div class="theme-option" data-theme="sakura" onclick="setTheme('sakura', this)">
+                <div class="theme-swatch" style="background:#c06080;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#e8a0b4;"></div>
+                </div>
+                <span class="theme-option-label">Sakura</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 3: Zarif -->
+            <div class="theme-option" data-theme="elegant" onclick="setTheme('elegant', this)">
+                <div class="theme-swatch" style="background:#505070;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#c8c8d8;"></div>
+                </div>
+                <span class="theme-option-label">Zarif</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 4: Zümrüt -->
+            <div class="theme-option" data-theme="emerald" onclick="setTheme('emerald', this)">
+                <div class="theme-swatch" style="background:#006040;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#50c878;"></div>
+                </div>
+                <span class="theme-option-label">Zümrüt</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 5: Ay Işığı -->
+            <div class="theme-option" data-theme="moonlight" onclick="setTheme('moonlight', this)">
+                <div class="theme-swatch" style="background:#5b21b6;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#a78bfa;"></div>
+                </div>
+                <span class="theme-option-label">Ay Işığı</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 6: Kor Ateş -->
+            <div class="theme-option" data-theme="ember" onclick="setTheme('ember', this)">
+                <div class="theme-swatch" style="background:#c43010;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#ff7c38;"></div>
+                </div>
+                <span class="theme-option-label">Kor Ateş</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 7: Okyanus -->
+            <div class="theme-option" data-theme="ocean" onclick="setTheme('ocean', this)">
+                <div class="theme-swatch" style="background:#0369a1;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#38bdf8;"></div>
+                </div>
+                <span class="theme-option-label">Okyanus</span>
+                <div class="theme-active-dot"></div>
+            </div>
+
+            <!-- 8: Kül -->
+            <div class="theme-option" data-theme="ash" onclick="setTheme('ash', this)">
+                <div class="theme-swatch" style="background:#334155;">
+                    <div style="position:absolute;left:0;top:0;width:50%;height:100%;background:#94a3b8;"></div>
+                </div>
+                <span class="theme-option-label">Kül</span>
+                <div class="theme-active-dot"></div>
+            </div>
+        </div>
+
+        <!-- Açma/Kapama Butonu -->
+        <div class="theme-toggle-btn" id="themeToggleBtn" title="Tema Seç">
+            <i class="fas fa-palette"></i>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 VELİ | Veli Salaraslan. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // ── INTRO ────────────────────────────────────
+        window.addEventListener('DOMContentLoaded', () => {
+            const introOverlay = document.getElementById('intro-overlay');
+            setTimeout(() => {
+                introOverlay.classList.add('hidden');
+            }, 3200);
+        });
+
+        // ── PAGE SWITCHER ────────────────────────────
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            document.querySelectorAll('.desktop-nav a').forEach(nav => nav.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('active');
+
+            document.querySelectorAll('.mobile-drawer a').forEach(mob => mob.classList.remove('active'));
+            const activeMob = document.getElementById('mob-' + pageId);
+            if (activeMob) activeMob.classList.add('active');
+
+            closeDrawer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ── MOBILE DRAWER ────────────────────────────
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleDrawer() {
+            mobileDrawer.classList.toggle('open');
+            drawerOverlay.classList.toggle('active');
+        }
+
+        function closeDrawer() {
+            mobileDrawer.classList.remove('open');
+            drawerOverlay.classList.remove('active');
+        }
+
+        mobileToggle.addEventListener('click', toggleDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+
+        // ── SCROLL TO TOP ────────────────────────────
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ── TEMA SEÇİCİ ──────────────────────────────
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themePanel = document.getElementById('themePanel');
+
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themePanel.classList.toggle('open');
+        });
+
+        // Panel dışına tıklanınca kapat
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#themePickerWrap')) {
+                themePanel.classList.remove('open');
+            }
+        });
+
+        function applyBackground(themeName) {
+            const bgMap = {
+                'ember':   'korarkaplan.jpg',
+                'sakura':  'sakura.jpg',
+                'ash':     'külarkaplan.jpg',
+                'elegant': 'zarif.jpg',
+                'emerald': 'zümrüt.jpg'
+            };
+            const bg = bgMap[themeName] || 'arkaplan.jpg';
+            document.body.style.backgroundImage = `url('${bg}')`;
+        }
+
+        function setTheme(themeName, clickedEl) {
+            // data-theme uygula
+            if (themeName === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', themeName);
+            }
+
+            // Arkaplan görselini değiştir
+            applyBackground(themeName);
+
+            // Aktif seçenek işareti
+            document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('active-theme'));
+            clickedEl.classList.add('active-theme');
+
+            // LocalStorage'a kaydet
+            localStorage.setItem('veli-theme', themeName);
+
+            // Paneli kapat (küçük gecikme ile)
+            setTimeout(() => themePanel.classList.remove('open'), 220);
+        }
+
+        // Sayfa yüklendiğinde kaydedilmiş temayı uygula
+        (function() {
+            const saved = localStorage.getItem('veli-theme');
+            if (saved && saved !== 'default') {
+                document.documentElement.setAttribute('data-theme', saved);
+                applyBackground(saved);
+                const matchingOpt = document.querySelector(`.theme-option[data-theme="${saved}"]`);
+                if (matchingOpt) {
+                    document.querySelectorAll('.theme-option').forEach(o => o.classList.remove('active-theme'));
+                    matchingOpt.classList.add('active-theme');
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
